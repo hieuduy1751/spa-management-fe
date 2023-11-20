@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { errorLoggingMiddleware } from './middlewares/errorLogging.middleware'
+import { errorLoggingMiddleware } from './middlewares/errorLogging'
 import rootReducer from './slices'
 
 export const store = configureStore({

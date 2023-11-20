@@ -1,52 +1,31 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { setUser } from './userSlice'
-import { deleteToken, deleteUser, persistToken, readToken } from '../../services/localStorage.service'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase'
+import { createAction, createSlice, PrepareAction } from '@reduxjs/toolkit'
+import { persistUser, readUser } from '~/services/localStorage'
 
-export interface AuthSlice {
-  token: string | null
+export interface UserState {
+  user: any | null
 }
 
-export interface LoginRequest {
-  email: string
-  password: string
+const initialState: UserState = {
+  user: readUser()
 }
 
-const initialState: AuthSlice = {
-  token: readToken()
-}
+export const setUser = createAction<PrepareAction<any>>('user/setUser', (newUser) => {
+  persistUser(newUser)
 
-export const doLogin = createAsyncThunk('auth/doLogin', async (loginPayload: LoginRequest, { dispatch }) =>
-  signInWithEmailAndPassword(auth, loginPayload.email, loginPayload.password).then((res) => {
-    const user = res.user
-    dispatch(setUser(res.user))
-    // @ts-ignore
-    persistToken(res.user?.accessToken)
-
-    // @ts-ignore
-    return res.user?.accessToken
-  })
-)
-
-export const doLogout = createAsyncThunk('auth/doLogout', (payload, { dispatch }) => {
-  deleteToken()
-  deleteUser()
-  dispatch(setUser(null))
+  return {
+    payload: newUser
+  }
 })
 
-const authSlice = createSlice({
-  name: 'auth',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(doLogin.fulfilled, (state, action) => {
-      state.token = action.payload
-    })
-    builder.addCase(doLogout.fulfilled, (state) => {
-      state.token = ''
+    builder.addCase(setUser, (state, action) => {
+      state.user = action.payload
     })
   }
 })
 
-export default authSlice.reducer
+export default userSlice.reducer

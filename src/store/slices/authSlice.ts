@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { setUser } from './userSlice'
-import { deleteToken, deleteUser, persistToken, readToken } from '../../services/localStorage.service'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase'
+import { deleteToken, deleteUser, persistToken, readToken } from '~/services/localStorage'
 
 export interface AuthSlice {
   token: string | null
@@ -17,19 +15,12 @@ const initialState: AuthSlice = {
   token: readToken()
 }
 
-export const doLogin = createAsyncThunk('auth/doLogin', async (loginPayload: LoginRequest, { dispatch }) =>
-  signInWithEmailAndPassword(auth, loginPayload.email, loginPayload.password).then((res) => {
-    const user = res.user
-    dispatch(setUser(res.user))
-    // @ts-ignore
-    persistToken(res.user?.accessToken)
+export const doLogin = createAsyncThunk('auth/doLogin', async () => {
+  // TODO: update this
+  return ''
+})
 
-    // @ts-ignore
-    return res.user?.accessToken
-  })
-)
-
-export const doLogout = createAsyncThunk('auth/doLogout', (payload, { dispatch }) => {
+export const doLogout = createAsyncThunk('auth/doLogout', (_, { dispatch }) => {
   deleteToken()
   deleteUser()
   dispatch(setUser(null))
