@@ -1,14 +1,14 @@
 import axios from 'axios'
 import api from '../constants/api'
 
-const authAxiosInstance = axios.create({
+const authAxiosFormDataInstance = axios.create({
   baseURL: api.apiPath,
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'multipart/form-data'
   }
 })
 
-authAxiosInstance.interceptors.request.use((config) => {
+authAxiosFormDataInstance.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
@@ -16,7 +16,7 @@ authAxiosInstance.interceptors.request.use((config) => {
   return config
 })
 
-authAxiosInstance.interceptors.response.use(
+authAxiosFormDataInstance.interceptors.response.use(
   (response) => {
     return response
   },
@@ -27,6 +27,6 @@ authAxiosInstance.interceptors.response.use(
   }
 )
 
-authAxiosInstance.defaults.withCredentials = true
+authAxiosFormDataInstance.defaults.withCredentials = true
 
-export default authAxiosInstance
+export default authAxiosFormDataInstance

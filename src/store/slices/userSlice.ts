@@ -1,12 +1,14 @@
-import { createAction, createSlice, PrepareAction } from '@reduxjs/toolkit'
-import { persistUser, readUser } from '~/services/localStorage'
+import { createAction, createAsyncThunk, createSlice, PrepareAction } from '@reduxjs/toolkit'
+import { searchCustomerByUsername, updateCustomer } from '~/services/customer'
+import { persistUser } from '~/services/localStorage'
+import { CustomerType } from '~/types/customer'
 
 export interface UserState {
-  user: any | null
+  user: CustomerType | null
 }
 
 const initialState: UserState = {
-  user: readUser()
+  user: null
 }
 
 export const setUser = createAction<PrepareAction<any>>('user/setUser', (newUser) => {
@@ -17,6 +19,23 @@ export const setUser = createAction<PrepareAction<any>>('user/setUser', (newUser
   }
 })
 
+export const getUser = createAsyncThunk('user/getUser', async (username: string) => {
+  const res = await searchCustomerByUsername(username)
+  return {
+    payload: res
+  }
+})
+
+export const updateUser = createAsyncThunk(
+  'user/updateUser',
+  async ({ userId, user }: { userId: string; user: CustomerType }) => {
+    const res = await updateCustomer(user, userId)
+    return {
+      user: res
+    }
+  }
+)
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -24,6 +43,12 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(setUser, (state, action) => {
       state.user = action.payload
+    })
+    builder.addCase(getUser.fulfilled, (state, action) => {
+      state.user = action.payload.payload
+    })
+    builder.addCase(updateUser.fulfilled, (state, action) => {
+      state.user = action.payload.user
     })
   }
 })

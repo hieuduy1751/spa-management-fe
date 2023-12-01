@@ -1,9 +1,9 @@
 export const persistToken = (token: string): void => {
-  localStorage.setItem('accessToken', token)
+  localStorage.setItem('token', token)
 }
 
 export const readToken = (): string => {
-  return localStorage.getItem('accessToken') || ''
+  return localStorage.getItem('token') || ''
 }
 
 export const persistUser = (user: any): void => {
@@ -16,5 +16,5 @@ export const readUser = (): any | null => {
   return userStr ? JSON.parse(userStr) : null
 }
 
-export const deleteToken = (): void => localStorage.removeItem('accessToken')
+export const deleteToken = (): void => localStorage.removeItem('token')
 export const deleteUser = (): void => localStorage.removeItem('user')
