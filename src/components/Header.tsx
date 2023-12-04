@@ -26,11 +26,7 @@ export default function Header() {
       key: 'goi-dich-vu',
       label: 'Dịch vụ',
       onClick: () => navigate('/services')
-    },
-    {
-      key: 'cong-dong',
-      label: 'Cộng đồng'
-    },
+    }
   ]
 
   return (

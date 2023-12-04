@@ -31,7 +31,7 @@ export default function UserDetail() {
           icon={<User2 />}
         />
       )}
-      <span onClick={handleLogout} className='text-red-500 ml-1 font-bold cursor-pointer'>
+      <span onClick={handleLogout} className='text-red-500 ml-1 font-bold cursor-pointer w-20'>
         Đăng xuất
       </span>
     </div>

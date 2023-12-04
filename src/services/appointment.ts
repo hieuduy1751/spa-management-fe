@@ -10,14 +10,16 @@ export async function createAppointment(appointment: AppointmentType) {
   return res.data
 }
 
-export async function getAppointments(idCustomer: string,pagination?: PaginationType) {
+export async function getAppointments(idCustomer: string, pagination?: PaginationType) {
   const paginationPayload = {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     page: pagination?.pagination?.current - 1 || 0,
-    size: pagination?.pagination.pageSize || 10,
+    size: pagination?.pagination.pageSize || 10
   }
-  const path = `${API.apiPath}/${API.appointment}/customer/${idCustomer}${pagination ? '?' + qs.stringify(paginationPayload) : ''}`
+  const path = `${API.apiPath}/${API.appointment}/customer/${idCustomer}${
+    pagination ? '?' + qs.stringify(paginationPayload) : ''
+  }`
   const res = await authAxiosInstance.get(path)
   return res.data
 }

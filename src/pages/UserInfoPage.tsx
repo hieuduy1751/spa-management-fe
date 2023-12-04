@@ -192,7 +192,7 @@ export default function UserInfoPage() {
                 <Input readOnly={isDisabled} />
               </Form.Item>
               <Form.Item name='email' rules={[{ required: true }, { type: 'email' }]} label='Email'>
-                <Input type='email' readOnly={isDisabled} />
+                <Input type='email' disabled />
               </Form.Item>
               <Form.Item
                 name='phoneNumber'

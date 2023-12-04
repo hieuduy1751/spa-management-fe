@@ -17,7 +17,6 @@ export default function AppointmentPage() {
   const [loading, setLoading] = useState<boolean>(false)
   const [api, contextHolder] = notification.useNotification()
   const user = useAppSelector((state) => state.user.user)
-  const [idEmployee, setIdEmployee] = useState<number | null>()
   const [idProduct, setIdProduct] = useState<number | null>()
   const [time, setTime] = useState<any | null>()
   const navigate = useNavigate()
@@ -41,7 +40,8 @@ export default function AppointmentPage() {
     const newAppointment: AppointmentType = {
       ...values,
       time: dayjs(values.time).add(7, 'hours').format('YYYY-MM-DD HH:mm:ss'),
-      idCustomer: user?.id
+      idCustomer: user?.id,
+      idEmployee: 1
     }
     setLoading(true)
     try {
@@ -68,9 +68,6 @@ export default function AppointmentPage() {
         onFinish={handleOnFinish}
         validateMessages={validateMessages}
       >
-        <Form.Item name='idEmployee' rules={[{ required: true }]} label='Nhân viên'>
-          <EmployeeSearchInput value={idEmployee} onChange={setIdEmployee} placeholder='Chọn nhân viên' />
-        </Form.Item>
         <Form.Item name='idProduct' rules={[{ required: true }]} label='Dịch vụ'>
           <ServiceSearchInput value={idProduct} onChange={setIdProduct} placeholder='Chọn dịch vụ' />
         </Form.Item>
@@ -87,8 +84,12 @@ export default function AppointmentPage() {
             </Button>
           ) : (
             <div className='flex items-center'>
-              <Typography.Text className='text-red-500 mr-3'>Bạn cần cập nhật thông tin trước khi đặt hẹn</Typography.Text>
-              <Button type='primary' htmlType='button' onClick={() => navigate('/user/info')}>Đi tới trang cập nhật</Button>
+              <Typography.Text className='text-red-500 mr-3'>
+                Bạn cần cập nhật thông tin trước khi đặt hẹn
+              </Typography.Text>
+              <Button type='primary' htmlType='button' onClick={() => navigate('/user/info')}>
+                Đi tới trang cập nhật
+              </Button>
             </div>
           )}
         </Form.Item>

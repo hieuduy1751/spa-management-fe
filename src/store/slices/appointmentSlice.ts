@@ -47,7 +47,8 @@ export const getAppointments = createAsyncThunk(
 
 export const addAppointment = createAsyncThunk(
   'appointments/doCreateAppointment',
-  async (appointment: AppointmentType, { dispatch }) => {
+  async (appointment: AppointmentType, { dispatch, getState }) => {
+    const state = getState()
     await createAppointment(appointment)
     dispatch(
       getAppointments({
@@ -57,7 +58,10 @@ export const addAppointment = createAsyncThunk(
             pageSize: 10,
             total: 0
           }
-        }
+        },
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        customerId: state.user.user.id.toString()
       })
     )
   }

@@ -37,6 +37,9 @@ export default function Sidebar() {
 
   const handleNavigate = ({ key }) => {
     switch (key) {
+      case 'info':
+        navigate('/user/info')
+        break
       case 'treatment-detail':
         navigate('/user/treatments')
         break
@@ -60,7 +63,7 @@ export default function Sidebar() {
           items={items}
           onClick={handleNavigate}
           className='rounded-xl'
-          defaultSelectedKeys={['dashboard']}
+          defaultSelectedKeys={['info']}
         />
       </div>
       <div>

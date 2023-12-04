@@ -2,7 +2,8 @@ import { Col, Row, Image, Typography, Tag, Button, Divider } from 'antd'
 import TextArea from 'antd/es/input/TextArea'
 import { Send } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import CreateAppointment from '~/components/CreateAppointment'
 import Rating from '~/components/Rating'
 import ReviewComment from '~/components/ReviewComment'
 import PRODUCT_TYPE from '~/constants/product-type'
@@ -15,9 +16,12 @@ export default function ServiceDetailPage() {
   const params = useParams()
   const user = useAppSelector((state) => state.user.user)
   const [service, setService] = useState<ProductType>()
+  const [modalOpen, setModalOpen] = useState(false)
   const [reviews, setReviews] = useState<any[]>([])
   const [stars, setStars] = useState(5)
   const [comment, setComment] = useState('')
+  const [productId, setProductId] = useState('')
+  const navigate = useNavigate()
 
   const fetchService = async (serviceId: number) => {
     try {
@@ -64,6 +68,7 @@ export default function ServiceDetailPage() {
       // @ts-expect-error
       fetchService(params.id)
       fetchRatings(params.id)
+      setProductId(params.id)
     }
   }, [params])
 
@@ -78,10 +83,29 @@ export default function ServiceDetailPage() {
           <Typography.Text className='text-xl font-bold block text-red-700 mb-3'>
             {service?.price.toLocaleString()} VND
           </Typography.Text>
-          <Tag className='text-2xl'>{PRODUCT_TYPE[service?.productType || 'SERVICE']}</Tag>
-          <Button className='mt-5 flex items-center bg-orange-400 hover:bg-orange-600' type='primary' size='large'>
-            Đặt dịch vụ
-          </Button>
+          <Tag color='orange' className='text-2xl'>
+            {PRODUCT_TYPE[service?.productType || 'SERVICE']}
+          </Tag>
+          {user?.firstName && user?.lastName ? (
+            <Button
+              onClick={() => setModalOpen(true)}
+              className='mt-5 flex items-center bg-orange-400 hover:bg-orange-600'
+              type='primary'
+              size='large'
+            >
+              Đặt dịch vụ
+            </Button>
+          ) : (
+            <div className='mt-4'>
+              <Typography.Text className='text-red-500 mr-3'>
+                Bạn cần cập nhật thông tin trước khi đặt hẹn
+              </Typography.Text>
+              <Button type='primary' className='mt-3' htmlType='button' onClick={() => navigate('/user/info')}>
+                Đi tới trang cập nhật
+              </Button>
+            </div>
+          )}
+          <CreateAppointment productId={productId} modalOpen={modalOpen} setModalOpen={setModalOpen} />
         </Col>
       </Row>
       <Row>
