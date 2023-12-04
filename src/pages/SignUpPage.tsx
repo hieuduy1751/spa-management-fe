@@ -25,7 +25,8 @@ export default function SignUpPage() {
       doRegister({
         username: formValues.username,
         password: formValues.password,
-        passwordConfirm: formValues.confirmPassword
+        passwordConfirm: formValues.passwordConfirm,
+        email: formValues.email
       })
     )
       .unwrap()
@@ -63,6 +64,9 @@ export default function SignUpPage() {
           onFinishFailed={onFinishFailed}
           autoComplete='off'
         >
+          <Form.Item label='Email' name='email' rules={[{ required: true }, { type: 'email' }]}>
+            <Input />
+          </Form.Item>
           <Form.Item<FieldType>
             label='Tên đăng nhập'
             name='username'
@@ -107,7 +111,7 @@ export default function SignUpPage() {
             </Button>
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button onClick={handleLogin} type="link" htmlType='button'>
+            <Button onClick={handleLogin} type='link' htmlType='button'>
               Đăng nhập
             </Button>
           </Form.Item>

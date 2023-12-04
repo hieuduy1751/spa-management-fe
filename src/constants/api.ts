@@ -11,7 +11,8 @@ const API = {
   product: 'product/',
   appointment: 'appointment',
   treatment: 'treatment-detail',
-  invoice: 'invoice'
+  invoice: 'invoice',
+  rating: 'rating'
 }
 
 export default API

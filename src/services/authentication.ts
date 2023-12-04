@@ -8,13 +8,14 @@ export async function login(username: string, password: string) {
   return res.data
 }
 
-export async function register(username: string, password: string, passwordConfirm: string) {
+export async function register(username: string, password: string, passwordConfirm: string, email: string) {
   const payload = {
     username,
     password,
     passwordConfirm
   }
-  const path = `${API.apiPath}/${API.authentication.register}`
+  console.log(payload)
+  const path = `${API.apiPath}/${API.authentication.register}?email=${email}`
   const res = await defaultAxiosInstance.post(path, payload)
   return res.data
 }

@@ -7,7 +7,6 @@ import { PaginationType } from '~/types/generalTypes'
 
 export default function ServicePage() {
   const data = useAppSelector((state) => state.services.services)
-  const loading = useAppSelector((state) => state.services.loading)
   const tableParams: PaginationType = useAppSelector((state) => state.services.pagination)
   const dispatch = useAppDispatch()
 
@@ -33,14 +32,10 @@ export default function ServicePage() {
         <Input.Search placeholder='Tìm kiếm dịch vụ' />
       </div>
       <div className='w-[80%] p-5'>
-        <Row>
+        <Row className='gap-4'>
           {data?.map((service, index) => (
-            <Col key={index} span={6}>
-              <ProductItem
-                productName={service.name}
-                productDescription={service.description}
-                productImg={service.imageUrl || ''}
-              />
+            <Col key={index} span={7}>
+              <ProductItem service={service} />
             </Col>
           ))}
         </Row>

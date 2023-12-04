@@ -13,6 +13,8 @@ import UserInfoPage from '~/pages/UserInfoPage'
 import TreatmentListPage from '~/pages/TreatmentListPage'
 import AppointmentListPage from '~/pages/AppointmentListPage'
 import InvoicePage from '~/pages/InvoicePage'
+import ConfirmEmail from '~/pages/ConfirmEmail'
+import ServiceDetailPage from '~/pages/ServiceDetailPage'
 
 export default function AppRouter() {
   const protectedLayout = (
@@ -28,6 +30,7 @@ export default function AppRouter() {
           <Route index element={<LandingPage />} />
           <Route path='appointment' element={<AppointmentPage />} />
           <Route path='services' element={<ServicePage />} />
+          <Route path='services/:id' element={<ServiceDetailPage />} />
         </Route>
         <Route path='/user' element={protectedLayout}>
           <Route path='info' element={<UserInfoPage />} />
@@ -37,6 +40,7 @@ export default function AppRouter() {
         </Route>
         <Route path='/auth' element={<AuthLayout />}>
           <Route path='signup' element={<SignUpPage />} />
+          <Route path='confirm-email' element={<ConfirmEmail />} />
           <Route path='login' element={<SignInPage />} />
         </Route>
         <Route path='/logout' element={<Logout />} />
