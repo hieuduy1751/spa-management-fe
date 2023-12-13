@@ -93,9 +93,9 @@ export default function ServiceDetailPage() {
               type='primary'
               size='large'
             >
-              Đặt dịch vụ
+              Đặt Liệu trình
             </Button>
-          ) : (
+          ) : user?.email ? (
             <div className='mt-4'>
               <Typography.Text className='text-red-500 mr-3'>
                 Bạn cần cập nhật thông tin trước khi đặt hẹn
@@ -104,13 +104,24 @@ export default function ServiceDetailPage() {
                 Đi tới trang cập nhật
               </Button>
             </div>
+          ) : (
+            <div className='mt-4'>
+              <Button
+                onClick={() => setModalOpen(true)}
+                className='mt-5 flex items-center bg-orange-400 hover:bg-orange-600'
+                type='primary'
+                size='large'
+              >
+                Đặt Liệu trình
+              </Button>
+            </div>
           )}
           <CreateAppointment productId={productId} modalOpen={modalOpen} setModalOpen={setModalOpen} />
         </Col>
       </Row>
       <Row>
         <Col span={24} className='p-5 pb-3'>
-          <Typography.Text className='text-2xl font-bold'>Thông tin dịch vụ</Typography.Text>
+          <Typography.Text className='text-2xl font-bold'>Thông tin Liệu trình</Typography.Text>
         </Col>
       </Row>
       <Divider />
@@ -140,15 +151,19 @@ export default function ServiceDetailPage() {
         ))}
       </Row>
       <Divider />
-      <div className='my-3 px-5'>
-        <Rating editable stars={stars} setStars={setStars} />
-      </div>
-      <div className='w-1/2 flex gap-2 px-5'>
-        <TextArea placeholder='Đánh giá' value={comment} onChange={(e) => setComment(e.target.value)} />
-        <Button onClick={handleSendRating} className='flex items-center' type='primary' icon={<Send />}>
-          Gửi đánh giá
-        </Button>
-      </div>
+      {user?.email && (
+        <>
+          <div className='my-3 px-5'>
+            <Rating editable stars={stars} setStars={setStars} />
+          </div>
+          <div className='w-1/2 flex gap-2 px-5'>
+            <TextArea placeholder='Đánh giá' value={comment} onChange={(e) => setComment(e.target.value)} />
+            <Button onClick={handleSendRating} className='flex items-center' type='primary' icon={<Send />}>
+              Gửi đánh giá
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   )
 }

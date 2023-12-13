@@ -29,7 +29,7 @@ export default function ServicePage() {
   return (
     <div className='w-full h-full flex'>
       <div className='w-[20%] p-5'>
-        <Input.Search placeholder='Tìm kiếm dịch vụ' />
+        <Input.Search placeholder='Tìm kiếm Liệu trình' />
         <Divider />
         Khoảng giá
         <Slider range defaultValue={[200000, 500000]} min={200000} max={2000000} />

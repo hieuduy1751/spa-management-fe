@@ -107,7 +107,7 @@ export default function AppointmentDetail({ modalOpen, setModalOpen }: Appointme
               <Form.Item name='customer' rules={[{ required: true }]} label='Khách hàng'>
                 <Input disabled />
               </Form.Item>
-              <Form.Item name='product' rules={[{ required: true }]} label='Dịch vụ'>
+              <Form.Item name='product' rules={[{ required: true }]} label='Liệu trình'>
                 <Input disabled />
               </Form.Item>
               <Form.Item name='time' rules={[{ required: true }]} label='Thời gian'>

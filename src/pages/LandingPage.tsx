@@ -31,7 +31,7 @@ export default function LandingPage() {
         ))}
       </div>
       <div className='flex flex-col justify-center items-center gap-y-8 bg-gray-200 p-5'>
-        <Text className='font-bold text-[2rem] text-green-500'>Các gói dịch vụ thẩm mỹ</Text>
+        <Text className='font-bold text-[2rem] text-green-500'>Các gói Liệu trình thẩm mỹ</Text>
         <Text className='text-center text-[1rem]'>
           Chúng tôi cung cấp đa dạng gói xét nghiệm đáp ứng đầy đủ nhu cầu kiểm tra và theo dõi sức khoẻ định kỳ của
           bạn. Tất cả được thiết kế nhằm mang đến các giải pháp chẩn đoán, theo dõi và điều trị toàn diện.
@@ -75,7 +75,7 @@ export default function LandingPage() {
         <Text className='mb-3'>
           Đồng bộ trên toàn hệ thống, các chi nhánh Viện thẩm mỹ Nature Beauty đều được thiết kế với không gian rộng
           lớn, kiến trúc sang trọng cùng trang thiết bị hiện đại bậc nhất. Nhằm mang lại sự hài lòng cho khách hàng khi
-          đến trải nghiệm các dịch vụ làm đẹp chất lượng tại đây.
+          đến trải nghiệm các Liệu trình làm đẹp chất lượng tại đây.
         </Text>
         <div className='flex items-center mt-5 gap-2'>
           {goods.map((good: { title: string; img: string }, index: number) => (

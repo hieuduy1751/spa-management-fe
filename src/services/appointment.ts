@@ -3,11 +3,12 @@ import { AppointmentType } from '../types/appointment'
 import { PaginationType } from '../types/generalTypes'
 import authAxiosInstance from './authAxios'
 import qs from 'qs'
+import authAxiosInstanceCus from './authAxiosCus'
 
 export async function createAppointment(appointment: AppointmentType) {
   const path = `${API.apiPath}/${API.appointment}`
-  const res = await authAxiosInstance.post(path, appointment)
-  return res.data
+  const res = await authAxiosInstanceCus.post(path, appointment)
+  return res
 }
 
 export async function getAppointments(idCustomer: string, pagination?: PaginationType) {

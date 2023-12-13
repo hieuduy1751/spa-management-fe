@@ -222,7 +222,7 @@ export default function TreatmentDetail({ modalOpen, setModalOpen }: TreatmentDe
               <Form.Item hidden name='imageResult'>
                 <Input />
               </Form.Item>
-              <Form.Item name='product' rules={[{ required: true }]} label='Dịch vụ'>
+              <Form.Item name='product' rules={[{ required: true }]} label='Liệu trình'>
                 <Input disabled />
               </Form.Item>
               <Form.Item name='customer' rules={[{ required: true }]} label='Khách hàng'>
@@ -359,7 +359,7 @@ export default function TreatmentDetail({ modalOpen, setModalOpen }: TreatmentDe
     //         </Form>
     //       </Col>
     //       <Col span={12}>
-    //         <Typography.Text className='font-bold px-3'>Dịch vụ đã sử dụng</Typography.Text>
+    //         <Typography.Text className='font-bold px-3'>Liệu trình đã sử dụng</Typography.Text>
     //         <div className='px-3'>
     //           {treatment?.invoiceResponse?.invoiceDetailResponses?.map((invoiceDetail, index) => (
     //             <ProductInInvoiceDetail

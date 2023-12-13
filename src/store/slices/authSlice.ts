@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getUser, setUser } from './userSlice'
 import {
   deleteToken,
@@ -24,24 +24,18 @@ const initialState: AuthSlice = {
   role: readRole(),
   username: readUsername()
 }
+export const setToken = createAction('auth/setToken', (token: string) => {
+  return {
+    payload: token
+  }
+})
 
 export const doLogin = createAsyncThunk('auth/doLogin', async (loginPayload: LoginRequest, { dispatch }) => {
   try {
     const res = await login(loginPayload.username, loginPayload.password)
-    if (res?.status === 500) {
-      throw new Error(res.message)
-    } else {
-      if (res?.token) {
-        dispatch(getUser(loginPayload.username))
-        persistToken(res.token)
-        persistRole(res.role)
-        persistUsername(res.username)
-        return res.token
-      }
-      return ''
-    }
+    return ''
   } catch (err: any) {
-    throw new Error(err.message)
+    return ''
   }
 })
 
@@ -79,6 +73,9 @@ const authSlice = createSlice({
     })
     builder.addCase(doLogout.fulfilled, (state) => {
       state.token = ''
+    })
+    builder.addCase(setToken, (state, action) => {
+      state.token = action.payload
     })
   }
 })

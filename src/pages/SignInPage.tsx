@@ -2,9 +2,12 @@ import { useState } from 'react'
 import { Button, Checkbox, Form, Input, Spin, Typography } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../hooks/reduxHooks'
-import { doLogin } from '../store/slices/authSlice'
+import { doLogin, setToken } from '../store/slices/authSlice'
 import { LoadingOutlined } from '@ant-design/icons'
 import SpaLogo from '../assets/spa_logo.png'
+import { login } from '~/services/authentication'
+import { getUser } from '~/store/slices/userSlice'
+import { persistRole, persistToken, persistUsername } from '~/services/localStorage'
 
 type FieldType = {
   username?: string
@@ -18,39 +21,43 @@ export default function SignInPage() {
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
-  const onFinish = (formValues: any) => {
+  const onFinish = async (formValues: any) => {
     setErrorMessage('')
     setLoading(true)
-    dispatch(
-      doLogin({
-        username: formValues.username,
-        password: formValues.password
-      })
-    )
-      .unwrap()
-      .then(() => {
+    try {
+      const res = await login(formValues.username, formValues.password)
+      setLoading(false)
+      if (res.status === 200) {
+        dispatch(getUser(formValues.username))
+        dispatch(setToken(res.data.token))
+        persistToken(res.data.token)
+        persistRole(res.data.role)
+        persistUsername(res.data.username)
         navigate('/')
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.log(err.message)
-        setErrorMessage(err.message)
-        setLoading(false)
-      })
+      } else {
+        setErrorMessage(res.data.message)
+      }
+    } catch (err) {
+      setLoading(false)
+    }
   }
   const onFinishFailed = (errorInfo: any) => {
     console.log('failed', errorInfo)
   }
 
   const handleSignUp = () => {
-    navigate('/auth/signup') 
+    navigate('/auth/signup')
+  }
+
+  const handleGoHome = () => {
+    navigate('/')
   }
 
   return (
     <div className='w-full h-[100vh] flex justify-center items-center'>
       <div className='w-96'>
         <div className='flex justify-center'>
-          <img src={SpaLogo} alt='spa logo' className='w-48' />
+          <img onClick={handleGoHome} src={SpaLogo} alt='spa logo' className='w-48 cursor-pointer' />
         </div>
         <h4 className='text-4xl font-bold mb-4'>Đăng nhập</h4>
         <Form
@@ -103,7 +110,7 @@ export default function SignInPage() {
             </Button>
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button onClick={handleSignUp} type="link" htmlType='button'>
+            <Button onClick={handleSignUp} type='link' htmlType='button'>
               Đăng ký
             </Button>
           </Form.Item>

@@ -1,9 +1,10 @@
 import API from '~/constants/api'
 import authAxiosInstance from './authAxios'
+import authAxiosInstanceCus from './authAxiosCus'
 
 export async function getReviewsByProductId(productId: string) {
   const path = `${API.apiPath}/${API.rating}/product/${productId}`
-  const res = await authAxiosInstance.get(path)
+  const res = await authAxiosInstanceCus.get(path)
   return res.data
 }
 

@@ -30,7 +30,7 @@ export default function TreatmentListPage() {
       sorter: (a, b) => a.customerResponse?.firstName.charCodeAt(0) - b.customerResponse?.firstName.charCodeAt(0)
     },
     {
-      title: 'Dịch vụ',
+      title: 'Liệu trình',
       dataIndex: 'productResponse',
       key: 'productResponse',
       render: (record) => record.name,

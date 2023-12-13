@@ -3,6 +3,7 @@ import { PaginationType } from '../types/generalTypes'
 import { ProductType } from '../types/product'
 import authAxiosInstance from './authAxios'
 import qs from 'qs'
+import authAxiosInstanceCus from './authAxiosCus'
 
 export async function createProduct(product: ProductType) {
   const path = `${API.apiPath}/${API.product}`
@@ -19,7 +20,7 @@ export async function getProducts(categoryName: string, pagination?: PaginationT
     categoryName
   }
   const path = `${API.apiPath}/${API.product}type${pagination ? '?' + qs.stringify(paginationPayload) : ''}`
-  const res = await authAxiosInstance.get(path)
+  const res = await authAxiosInstanceCus.get(path)
   return res.data
 }
 
@@ -37,12 +38,12 @@ export async function deleteProduct(productId: string) {
 
 export async function searchServiceByName(name: string) {
   const path = `${API.apiPath}/${API.product}search/service/text?text=${name}`
-  const res = await authAxiosInstance.get(path)
+  const res = await authAxiosInstanceCus.get(path)
   return res.data
 }
 
 export async function getProductById(productId: string) {
   const path = `${API.apiPath}/${API.product}${productId}`
-  const res = await authAxiosInstance.get(path)
+  const res = await authAxiosInstanceCus.get(path)
   return res.data
 }

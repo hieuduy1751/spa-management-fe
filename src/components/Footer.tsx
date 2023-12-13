@@ -10,7 +10,7 @@ export default function Footer() {
       <div className='flex flex-col'>
         <img className='w-32' src={SpaLogo} alt='spa logo' />
         <Text className='font-bold text-lg'>CÔNG TY CP TẬP ĐOÀN NATURE BEAUTY</Text>
-        <Text>Viện thẩm mỹ DIVA luôn nỗ lực không ngừng nhằm mang đến dịch vụ hoàn hảo nhất cho khách hàng.</Text>
+        <Text>Viện thẩm mỹ DIVA luôn nỗ lực không ngừng nhằm mang đến Liệu trình hoàn hảo nhất cho khách hàng.</Text>
       </div>
       <div>
         <Text className='font-semibold text-lg'>Thông tin liên hệ</Text>

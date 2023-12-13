@@ -23,7 +23,7 @@ const initialState: AppointmentState = {
     pagination: {
       current: 1,
       pageSize: 10,
-      total: 10
+      total: 50
     }
   }
 }
@@ -49,21 +49,25 @@ export const addAppointment = createAsyncThunk(
   'appointments/doCreateAppointment',
   async (appointment: AppointmentType, { dispatch, getState }) => {
     const state = getState()
-    await createAppointment(appointment)
-    dispatch(
-      getAppointments({
-        pagination: {
+    const res = await createAppointment(appointment)
+    if (res.error) {
+      throw res
+    } else {
+      dispatch(
+        getAppointments({
           pagination: {
-            current: 1,
-            pageSize: 10,
-            total: 0
-          }
-        },
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        customerId: state.user.user.id.toString()
-      })
-    )
+            pagination: {
+              current: 1,
+              pageSize: 10,
+              total: 50
+            }
+          },
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          customerId: state.user.user.id.toString()
+        })
+      )
+    }
   }
 )
 

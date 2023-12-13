@@ -53,7 +53,7 @@ const PATH = [
   },
   {
     path: 'services',
-    name: 'Dịch vụ'
+    name: 'Liệu trình'
   },
   {
     path: 'posts',
@@ -69,7 +69,7 @@ const PATH = [
   },
   {
     path: 'service-list',
-    name: 'Danh sách dịch vụ'
+    name: 'Danh sách Liệu trình'
   }
 ]
 export default PATH

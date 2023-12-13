@@ -11,10 +11,10 @@ export default function MainLayout() {
       <Header />
       <Layout>
         <Content className='w-full flex h-full'>
-          <div className='w-[20%] 2xl:w-[10%] h-full bg-gray-200'>
+          <div className='w-[20%] h-full bg-gray-200'>
             <Sidebar />
           </div>
-          <div className='w-[80%] 2xl:w-[90%] h-[100vh] p-5'>
+          <div className='w-[80%] h-[100vh] p-5'>
             <Outlet />
           </div>
         </Content>

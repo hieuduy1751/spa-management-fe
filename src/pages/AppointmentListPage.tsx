@@ -41,7 +41,7 @@ export default function AppointmentListPage() {
       sorter: (a, b) => a.note.charCodeAt(0) - b.note.charCodeAt(0)
     },
     {
-      title: 'Dịch vụ',
+      title: 'Liệu trình',
       dataIndex: 'reference',
       key: 'referenceProduct',
       render: (record) => record.productName,

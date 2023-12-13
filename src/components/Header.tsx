@@ -24,7 +24,7 @@ export default function Header() {
     },
     {
       key: 'goi-dich-vu',
-      label: 'Dịch vụ',
+      label: 'Liệu trình',
       onClick: () => navigate('/services')
     }
   ]

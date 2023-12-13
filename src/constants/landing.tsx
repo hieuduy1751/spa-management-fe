@@ -15,13 +15,13 @@ export const reasons: LandingSectionItemProps[] = [
     icon: <Users size={150} />
   },
   {
-    title: 'Đa dạng dịch vụ',
-    body: 'Chúng tôi cung cấp đa dạng dịch vụ với mức chi phí hợp lý, linh hoạt theo nhu cầu khách hàng, đảm bảo chất lượng, hiệu quả của quá trình sử dụng dịch vụ',
+    title: 'Đa dạng Liệu trình',
+    body: 'Chúng tôi cung cấp đa dạng Liệu trình với mức chi phí hợp lý, linh hoạt theo nhu cầu khách hàng, đảm bảo chất lượng, hiệu quả của quá trình sử dụng Liệu trình',
     icon: <Sparkles size={150} />
   },
   {
     title: 'Hệ thống trang thiết bị hiện đại',
-    body: 'Với những thiết bị hiện đại nhất trong lĩnh vực spa, chúng tôi có thể cam kết với quý khách về quá trình sử dụng dịch vụ được thực hiện một cách hiện đại nhất, giảm thiểu các rủi ro cũng như tổn thương trong quá trính sử dụng',
+    body: 'Với những thiết bị hiện đại nhất trong lĩnh vực spa, chúng tôi có thể cam kết với quý khách về quá trình sử dụng Liệu trình được thực hiện một cách hiện đại nhất, giảm thiểu các rủi ro cũng như tổn thương trong quá trính sử dụng',
     icon: <Microscope size={150} />
   }
 ]
@@ -42,7 +42,7 @@ export const services: ProductItemProps[] = [
   {
     productName: 'Phun xăm thẩm mỹ',
     productDescription:
-      'Phun xăm thẩm mỹ là một phương pháp làm đẹp được sử dụng để tạo nên nét đẹp tự nhiên cho khuôn mặt. Với các công nghệ tiên tiến hiện nay, dịch vụ này  đã trở thành một trong những giải pháp tối ưu cho những ai muốn có một vẻ ngoài hoàn hảo và tự tin hơn.',
+      'Phun xăm thẩm mỹ là một phương pháp làm đẹp được sử dụng để tạo nên nét đẹp tự nhiên cho khuôn mặt. Với các công nghệ tiên tiến hiện nay, Liệu trình này  đã trở thành một trong những giải pháp tối ưu cho những ai muốn có một vẻ ngoài hoàn hảo và tự tin hơn.',
     productImg: 'https://cdn.diemnhangroup.com/seoulspa/2022/11/dich-vu-phun-xam-tham-my-4-2.jpg'
   },
   {
@@ -85,7 +85,7 @@ export const comments: ReviewCommentProps[] = [
     commentImg: 'https://vienthammydiva.vn/wp-content/uploads/2023/04/mau-3-scaled.webp',
     commentRate: 5,
     comment:
-      'Thu Thảo đã chọn Thẩm mỹ viện Nature Beauty trải nghiệm xóa nốt ruồi và hài lòng với dịch vụ. Chuyên nghiệp, tận tâm, uy tín là cảm nhận của Thảo về Nature Beauty.'
+      'Thu Thảo đã chọn Thẩm mỹ viện Nature Beauty trải nghiệm xóa nốt ruồi và hài lòng với Liệu trình. Chuyên nghiệp, tận tâm, uy tín là cảm nhận của Thảo về Nature Beauty.'
   },
   {
     commentorName: 'Trà Giang',
